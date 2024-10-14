@@ -1,30 +1,28 @@
 export class BasePage {
   constructor() {
-    // Configura la URL base desde el archivo de configuración de Cypress.
-    this.baseUrl = Cypress.config('baseUrl');
-    // Define el título esperado de la página para validaciones.
-    this.title = 'Calendar Challenge';
+   
   }
 
   // Navega a la URL base de la aplicación.
-  navigate() {
-    cy.visit(this.baseUrl);
+  navigateToUrl(url) {
+    cy.visit(url);
   }
 
   // Verifica que el título de la página sea el esperado.
-  getPageTitle() {
-    cy.title().should('eq', this.title);
+  getPageTitle(expectedTitle) {
+    cy.title().should('eq',expectedTitle);
   }
 
   // Verifica que la URL actual sea la URL base.
-  getCurrentUrl() {
-    cy.url().should('eq', this.baseUrl);
+  getCurrentUrl(expectedUrl) {
+    cy.url().should('eq', expectedUrl);
   }
 
   // Obtiene un elemento de la página basado en el selector proporcionado.
   getElement(selector) {
-    cy.get(selector);
+    return cy.get(selector);
   }
+  
 
   // Realiza un clic en el elemento seleccionado.
   clickElement(selector) {

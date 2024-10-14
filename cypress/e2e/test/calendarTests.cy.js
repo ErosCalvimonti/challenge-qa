@@ -8,7 +8,6 @@ describe("Challenge Cypress Minimalart", () => {
   it("Should navigate to the calendar page correctly",{ tags: ['@all'] }, () => {
     calendarPage.checkPageTitle();
     calendarPage.checkUrlCallendar();
-    cy.get('.non-existent-element').should('exist');
   });
 
   //   Iterar hasta que el mes actual sea febrero

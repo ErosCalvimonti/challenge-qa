@@ -4,12 +4,20 @@ describe('Challenge Cypress Minimalart', () => {
     
   beforeEach('Navigate to calendar page', () => {
     calendarPage.openCalendar()
-   
   });
 
-  it('Should navigate to the page correctly', () => {
-    calendarPage.getPageTitle()
-    calendarPage.getCurrentUrl()
+  it('Should navigate to the calendar page correctly', () => {
+    calendarPage.checkPageTitle()
+    calendarPage.checkUrlCallendar()
   });
+
+//   Iterar hasta que el mes actual sea febrero
+  it('Should navigate to February', () => {
+    calendarPage.isFebruary()
+  });
+
+  
+  
+
 
 })

@@ -16,8 +16,9 @@ describe('Challenge Cypress Minimalart', () => {
     calendarPage.isFebruary()
   });
 
-  
-  
-
+  it('Should navigate to February and ensure Groundhog Day event is present if not added', () => {
+    calendarPage.isFebruary();
+    calendarPage.ensureGroundhogDayEvent();
+  })
 
 })

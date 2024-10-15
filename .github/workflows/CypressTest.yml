@@ -13,10 +13,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: '14'
 
@@ -24,23 +24,18 @@ jobs:
         run: npm install
 
       - name: Cache Cypress
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ~/.cache/Cypress
           key: ${{ runner.os }}-cypress-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-cypress-
 
-      # Usar Cypress GitHub Action para simplificar la configuración
-      - name: Cypress.io
+      - name: Run Cypress tests
         uses: cypress-io/github-action@v6.5.0
         with:
-          browser: chrome # Puedes especificar el navegador
-          start: npm start # Comando para iniciar tu servidor
-          wait-on: http://localhost:3000 # URL a esperar antes de correr las pruebas
-          config-file: cypress.config.js # Asegúrate que el nombre del archivo de configuración sea correcto
-
-      - name: Send Email Notification
+          browser: chrome
+      - name: Send Email Notification on Failure
         if: failure()
         uses: dawidd6/action-send-mail@v3
         with:
@@ -49,6 +44,6 @@ jobs:
           username: ${{ secrets.SMTP_USERNAME }}
           password: ${{ secrets.SMTP_PASSWORD }}
           to: karielcode@gmail.com
-          subject: "Cypress Test Results"
-          body: "The Cypress tests have failed. Check the details in the GitHub Actions log here 'https://github.com/ErosCalvimonti/challenge-qa'."
           from: ${{ secrets.SMTP_USERNAME }}
+          subject: "Cypress Test Results"
+          body: "The Cypress tests have failed. Check the details in the GitHub Actions log."

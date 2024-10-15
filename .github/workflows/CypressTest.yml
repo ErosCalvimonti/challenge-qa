@@ -18,7 +18,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '12'
+          node-version: '14'
 
       - name: Install dependencies
         run: npm install
@@ -31,11 +31,14 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-cypress-
 
-      - name: Install Cypress
-        run: npm install cypress --save-dev
-
-      - name: Run Cypress Tests
-        run: npm run cypress:run
+      # Usar Cypress GitHub Action para simplificar la configuración
+      - name: Cypress.io
+        uses: cypress-io/github-action@v6.5.0
+        with:
+          browser: chrome # Puedes especificar el navegador
+          start: npm start # Comando para iniciar tu servidor
+          wait-on: http://localhost:3000 # URL a esperar antes de correr las pruebas
+          config-file: cypress.config.js # Asegúrate que el nombre del archivo de configuración sea correcto
 
       - name: Send Email Notification
         if: failure()

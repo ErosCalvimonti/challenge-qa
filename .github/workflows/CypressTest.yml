@@ -13,12 +13,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: cypress-io/github-action@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
         with:
-          build: npm run build
-          start: npm start
-          wait-on: "http://localhost:3000"
-          config-file: cypress.config.js
+          node-version: '14'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Cypress Tests
+        run: npm run cypress:run
+
       - name: Send Email Notification
         if: failure()
         uses: dawidd6/action-send-mail@v3

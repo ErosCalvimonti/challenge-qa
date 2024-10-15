@@ -1,4 +1,4 @@
-import { CalendarPage } from '../../pages/calendarPage';
+import { CalendarPage } from "../pages/CalendarPage";
 const calendarPage = new CalendarPage();
 describe("Challenge Cypress Minimalart", () => {
   beforeEach("Navigate to calendar page", () => {
@@ -8,6 +8,7 @@ describe("Challenge Cypress Minimalart", () => {
   it("Should navigate to the calendar page correctly",{ tags: ['@all'] }, () => {
     calendarPage.checkPageTitle();
     calendarPage.checkUrlCallendar();
+
   });
 
   //   Iterar hasta que el mes actual sea febrero

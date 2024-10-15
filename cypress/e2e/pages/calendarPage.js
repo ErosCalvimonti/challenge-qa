@@ -1,5 +1,5 @@
 // Importar la clase BasePage y los selectores
-import { BasePage } from "./basePage";
+import { BasePage } from "./basePage.js";
 
 export class CalendarPage extends BasePage {
   constructor() {

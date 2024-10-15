@@ -1,4 +1,4 @@
-import { CalendarPage } from "../pages/CalendarPage";
+import { CalendarPage } from "../pages/CalendarPage.js";
 const calendarPage = new CalendarPage();
 describe("Challenge Cypress Minimalart", () => {
   beforeEach("Navigate to calendar page", () => {
